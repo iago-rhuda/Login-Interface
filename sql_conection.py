@@ -1,7 +1,11 @@
+# imports
 import pyodbc
 import global_variables as gv
 
 
+# Functions
+
+# creating conextion with db
 def create_connection_with_db():
     # initializing connection to db
     try:
@@ -16,7 +20,7 @@ def create_connection_with_db():
         return cursor
     except:
         print(gv.colors['red'] + 'Unsuccessful Connection with database' + gv.colors['end'])
-# save data in db
+# save new user data in db
 def save_db(cursor, name, password, birth, city):
     comand = f'''
     INSERT INTO Users(
@@ -48,11 +52,3 @@ def verify_login(cursor, column, name, password):
         print(gv.colors['red'] + 'Access declined' + gv.colors['end'])
         access = 0
         return access
-# function to update db data
-def update_db(cursor, item, value, column, id):
-    comand = f'''
-    UPDATE Users SET {item} = {value}
-    WHERE {column} = {id}
-    '''
-    cursor.execute(comand)
-    cursor.commit()
