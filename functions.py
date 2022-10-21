@@ -1,3 +1,4 @@
+# imports
 import graphic_interface as face
 import global_variables as gv
 
@@ -10,7 +11,7 @@ class User:
         self.birth = birth
         self.city = city
 
-
+# handling user input 
 def handling_user_inputs(name, password, day, user_month, year, city):
     name = name.strip().upper()
     password = password
@@ -44,10 +45,11 @@ def handling_user_inputs(name, password, day, user_month, year, city):
     city = city.strip().upper()
     return [name, password, birth, city]
 
+# replacing "*" for "-" on birth
 def handling_birth_forgot_password(recovery_password):
     return recovery_password.replace('/', '-')
 
-
+# verifying user to recover password
 def forgot_password(cursor, column, column2,
         recovery_name, recovery_birth, recovery_city,
 
@@ -75,6 +77,7 @@ def forgot_password(cursor, column, column2,
     else:
         face.recovery_password_declined()
 
+# handling login issues (wrong user/password, user unregistered, )
 def handling_login_issues(cursor, name, password):
     comand = f'''
     SELECT {gv.db_items['user_name']} FROM {gv.db_items['db']}
@@ -95,9 +98,9 @@ def handling_login_issues(cursor, name, password):
     cursor.execute(comand)
     cheking_password = cursor.fetchone()
     if row_name == None:
-        row_name = ['inexistente']
+        row_name = ['non-existent']
     elif row_password == None:
-        row_password = ['inexistente']
+        row_password = ['non-existent']
     if cheking_password == None:
-        row_password = ['inexistente']
+        row_password = ['non-existent']
     return row_name[0], row_password[0]
