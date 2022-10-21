@@ -2,16 +2,15 @@
 import PySimpleGUI as sg
 import functions
 import global_variables as gv
-# import PySimpleGUIWeb
-# import PySimpleGUIQt
-# import PySimpleGUIWx
 
 
 # functions
 
 # login window function
 def login_window():
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Password: '), sg.InputText(key='password', password_char='*'),
@@ -19,10 +18,13 @@ def login_window():
         [sg.Button('Login'), sg.Button('Close'),
          sg.Button('Register'), sg.Button('Forgot Password')]
     ]
+    # returning the window
     return sg.Window('Login', layout=layout, finalize=True, element_justification='c')
 
 def login_window_see_password():
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Password: '), sg.InputText(key='password', password_char=False),
@@ -30,11 +32,14 @@ def login_window_see_password():
         [sg.Button('Login'), sg.Button('Close'),
          sg.Button('Register'), sg.Button('Forgot Password')]
     ]
+    # returning the window
     return sg.Window('Login', layout=layout, finalize=True, element_justification='c')
 
 # registration window function
 def registration_window():
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Birth date: '),
@@ -59,11 +64,14 @@ def registration_window():
         [sg.Text('Confirm password: '), sg.InputText(key='confirm_password', password_char='*')],
         [sg.Button('Save'), sg.Button('Back'), sg.Button('Close')],
     ]
+    # returning the window
     return sg.Window('Registration', layout=layout, finalize=True)
 
-# registration password don't match window function
+# registration password don't match window
 def registration_password_match():
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Birth date: '),
@@ -89,11 +97,14 @@ def registration_password_match():
         [sg.Text('Confirm password: '), sg.InputText(key='confirm_password', password_char='*')],
         [sg.Button('Save'), sg.Button('Back'), sg.Button('Close')],
     ]
+    # returning the window
     return sg.Window('Registration', layout=layout, finalize=True)
 
 # 'forgot password' window
 def forgot_password_window():
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('To recover your password, please answer the questions bellow:')],
         [sg.Text("What's your name ?"), sg.Input(key='recovery_name')],
@@ -101,31 +112,36 @@ def forgot_password_window():
         [sg.Text("What's your hometown ?"), sg.Input(key='recovery_city')],
         [sg.Button('Recovery'), sg.Button('Back'), sg.Button('Close')],
     ]
+    # returning the window
     return sg.Window('Password Recovery', layout=layout, finalize=True)
 
 def recovery_password_accepted(password):
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Your password is:')],
         [sg.Text(password, text_color='green')], [sg.Button('Back to Login')]
 
     ]
+    # returning the window
     return sg.Window('Password Recovery', layout=layout, finalize=True, element_justification='c')
 
 def recovery_password_declined():
+    # window theme
     sg.theme(gv.theme)
+    # returning the popup
     return sg.popup_ok("We couldn't find your user, please contact your supervisor")
 
 # main window function
 def main_window(name):
+    # window theme
     sg.theme(gv.theme)
+    # window layout
     layout = [
-        [sg.Text('Good Boy')],
-        [sg.Text('Name: '), sg.InputText(key='name')],
-        [sg.Text('Password: '), sg.InputText(key='password')],
-        [sg.Button('Login'), sg.Button('Close'),
-         sg.Button('Register')],
+        [sg.Text('Example')],
     ]
+    # returning the window
     return sg.Window(name, layout=layout, finalize=True)
 
 def event_name_update(cursor, name, password):
@@ -150,18 +166,26 @@ def event_name_update(cursor, name, password):
     elif name not in db:
         event_update = 2
         window_name = 'Unregistered User, please register'
+    # returning the window name and the event to update
     return window_name, event_update
 
 def user_password_wrong(name):
+    # window theme
+    sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Password: '), sg.InputText(key='password', password_char='*')],
         [sg.Text('User and/or password incorrect | Login Declined', text_color='red')],
         [sg.Button('Login'), sg.Button('Close'), sg.Button('Register')]
     ]
+    # returning the window
     return sg.Window(name, layout=layout, finalize=True)
 
 def unregistered_user(name):
+    # window theme
+    sg.theme(gv.theme)
+    # window layout
     layout = [
         [sg.Text('Name: '), sg.InputText(key='name')],
         [sg.Text('Password: '), sg.InputText(key='password', password_char='*')],
@@ -169,4 +193,5 @@ def unregistered_user(name):
         [sg.Text('Please register', text_color='yellow')],
         [sg.Button('Login'), sg.Button('Close'), sg.Button('Register')]
     ]
+    # returning the window
     return sg.Window(name, layout=layout, finalize=True)
