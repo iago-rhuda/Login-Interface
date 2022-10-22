@@ -1,3 +1,4 @@
+# global variables used in the project
 themes = [
         'Black', 'BlueMono', 'BluePurple',
         'BrightColors', 'BrownBlue', 'Dark', 'Dark2', 'DarkAmber',
